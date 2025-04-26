@@ -1,0 +1,117 @@
+
+
+body {
+    background-color: var(--bs-dark-bg-subtle);
+}
+
+.card {
+    transition: transform 0.3s ease;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgba(25, 135, 84, 0.1);
+}
+
+.crop-card {
+    background-color: var(--bs-dark-bg-subtle);
+    border-left: 4px solid var(--bs-info) !important; /* Changed from success to info */
+}
+
+/* New color classes */
+.bg-teal {
+    background-color: #20c997 !important;
+}
+
+.bg-purple {
+    background-color: #6f42c1 !important;
+}
+
+.bg-orange {
+    background-color: #fd7e14 !important;
+}
+
+.text-teal {
+    color: #20c997 !important;
+}
+
+/* Fertilizer info styles */
+.alert-info {
+    background-color: rgba(13, 202, 240, 0.1) !important;
+    border-left: 4px solid var(--bs-info) !important;
+}
+
+.alert-info h5 {
+    color: var(--bs-info);
+    margin-bottom: 1rem;
+}
+
+.fertilizer-section {
+    border-top: 1px solid var(--bs-border-color);
+    padding-top: 0.75rem;
+    margin-top: 0.75rem;
+}
+
+.crop-score-container {
+    margin-top: 1rem;
+}
+
+/* Override progress bar height */
+.progress {
+    height: 1.5rem;
+    border-radius: 0.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.progress-bar {
+    font-weight: 600;
+}
+
+/* Accordion styling */
+.accordion-button:not(.collapsed) {
+    background-color: var(--bs-info-bg-subtle);
+    color: var(--bs-info);
+}
+
+.accordion-button:focus {
+    box-shadow: 0 0 0 0.25rem rgba(13, 202, 240, 0.25);
+}
+
+/* Form elements */
+.form-select:focus, .form-control:focus {
+    border-color: var(--bs-info);
+    box-shadow: 0 0 0 0.25rem rgba(13, 202, 240, 0.25);
+}
+
+/* Button hover effect */
+.btn-primary {
+    background-color: var(--bs-info);
+    border-color: var(--bs-info);
+}
+
+.btn-primary:hover, .btn-primary:focus {
+    background-color: var(--bs-info-text);
+    border-color: var(--bs-info-text);
+}
+
+#soilDescription {
+    background-color: var(--bs-dark-bg-subtle) !important;
+    border-color: var(--bs-info) !important;
+}
+
+/* Footer styling */
+footer {
+    border-top: 1px solid var(--bs-border-color);
+    margin-top: 2rem;
+    padding-top: 1rem;
+}

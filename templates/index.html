@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Soil Crop Recommender</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <div class="row mb-4">
+            <div class="col-md-8 offset-md-2">
+                <div class="card border-0 shadow">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="icon-container me-3">
+                                <i class="fas fa-seedling fa-2x text-teal"></i>
+                            </div>
+                            <h1 class="mb-0">Indian Soil Crop & Organic Fertilizer Recommender</h1>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-5">
+                <div class="card border-0 shadow h-100">
+                    <div class="card-header bg-dark">
+                        <h4 class="mb-0"><i class="fas fa-earth-asia me-2"></i>Select Soil Type</h4>
+                    </div>
+                    <div class="card-body">
+                        <form id="soilForm">
+                            <div class="mb-3">
+                                <label for="soilSelect" class="form-label">Soil Type:</label>
+                                <select class="form-select" id="soilSelect" required>
+                                    <option value="" selected disabled>-- Select a soil type --</option>
+                                    {% for soil, description in soils.items() %}
+                                    <option value="{{ soil }}">{{ soil }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div id="soilDescription" class="mb-3 p-3 border rounded bg-dark d-none">
+                                <h5>Soil Description:</h5>
+                                <p id="soilDescriptionText"></p>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-search me-2"></i>Get Crop & Organic Fertilizer Recommendations
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-7">
+                <div class="card border-0 shadow h-100">
+                    <div class="card-header bg-dark">
+                        <h4 class="mb-0"><i class="fas fa-leaf me-2"></i>Recommended Crops & Organic Fertilizers</h4>
+                    </div>
+                    <div class="card-body">
+                        <div id="loadingSpinner" class="text-center d-none">
+                            <div class="spinner-border text-info mb-3" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <p>Analyzing soil suitability...</p>
+                        </div>
+                        
+                        <div id="initialMessage" class="text-center">
+                            <img src="{{ url_for('static', filename='img/agriculture.svg') }}" alt="Agriculture" class="mb-3" style="width: 150px;">
+                            <p class="text-muted">Select a soil type to see recommended crops and fertilizers</p>
+                        </div>
+
+                        <div id="errorMessage" class="alert alert-danger d-none"></div>
+                        
+                        <div id="resultsContainer" class="d-none">
+                            <h5 class="mb-3">Best crops for <span id="selectedSoilType" class="text-info"></span>:</h5>
+                            <div id="cropResults" class="row g-3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="card border-0 shadow">
+                    <div class="card-header bg-dark">
+                        <h4 class="mb-0"><i class="fas fa-info-circle me-2"></i>About Indian Soils and Fertilizers</h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="lead mb-3">
+                            Select a soil type below to learn more about its characteristics and recommended fertilizers for optimal crop growth.
+                        </p>
+                        <div class="accordion" id="soilAccordion">
+                            {% for soil, description in soils.items() %}
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ loop.index }}">
+                                        {{ soil }} Soil
+                                    </button>
+                                </h2>
+                                <div id="collapse{{ loop.index }}" class="accordion-collapse collapse" data-bs-parent="#soilAccordion">
+                                    <div class="accordion-body">
+                                        <p>{{ description }}</p>
+                                        <div class="fertilizer-section">
+                                            <h5 class="text-info"><i class="fas fa-seedling me-2"></i>Organic Fertilizer Information</h5>
+                                            <p>For detailed organic fertilizer recommendations specific to your selected soil type and crops, use the soil selection tool above to get eco-friendly options.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
